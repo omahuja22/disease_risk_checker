@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loan Eligibility Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>💼 Loan Eligibility Predictor</h1>
+    <form method="POST">
+      <div class="grid">
+        <label>Gender</label>
+        <select name="gender">
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+
+        <label>Married</label>
+        <select name="married">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+
+        <label>Dependents</label>
+        <select name="dependents">
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3+</option>
+        </select>
+
+        <label>Education</label>
+        <select name="education">
+          <option>Graduate</option>
+          <option>Not Graduate</option>
+        </select>
+
+        <label>Self Employed</label>
+        <select name="self_employed">
+          <option>No</option>
+          <option>Yes</option>
+        </select>
+
+        <label>Applicant Income <span class="hint">(₹ thousands/month, e.g. ₹35,000 = 35)</span></label>
+        <input type="number" name="applicant_income" required />
+
+        <label>Coapplicant Income <span class="hint">(₹ thousands/month, e.g. ₹20,000 = 20)</span></label>
+        <input type="number" name="coapplicant_income" required />
+
+        <label>Loan Amount <span class="hint">(₹ thousands, e.g. ₹3.5 lakh = 350)</span></label>
+        <input type="number" name="loan_amount" required />
+
+        <label>Loan Term</label>
+        <select name="loan_term">
+          <option value="12">12 months = 1 year</option>
+          <option value="36">36 months = 3 years</option>
+          <option value="60">60 months = 5 years</option>
+          <option value="84">84 months = 7 years</option>
+          <option value="120">120 months = 10 years</option>
+          <option value="180">180 months = 15 years</option>
+          <option value="240">240 months = 20 years</option>
+          <option value="300">300 months = 25 years</option>
+          <option value="360" selected>360 months = 30 years</option>
+        </select>
+
+        <label>Credit History</label>
+        <select name="credit_history">
+          <option>Good</option>
+          <option>Normal</option>
+          <option>Bad</option>
+        </select>
+
+        <label>Property Area</label>
+        <select name="property_area">
+          <option>Urban</option>
+          <option>Semiurban</option>
+          <option>Rural</option>
+        </select>
+      </div>
+
+      <button type="submit">Check Eligibility</button>
+    </form>
+
+    {% if result %}
+      <div class="result">{{ result }}</div>
+    {% endif %}
+
+    <p class="info-note">
+      ℹ️ Please enter all incomes and loan amounts in ₹ thousands.<br>
+      For example, ₹3.5 lakh = 350 | ₹35,000/month = 35
+    </p>
+  </div>
+</body>
+</html>
