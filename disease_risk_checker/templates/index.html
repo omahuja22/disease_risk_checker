@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diabetes Risk Checker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="hero">
+    <img src="https://cdn-icons-png.flaticon.com/512/3286/3286779.png" alt="Health Icon">
+    <h1>Diabetes Risk Checker</h1>
+    <p>Enter your health data below to predict your diabetes risk instantly.</p>
+  </div>
+
+  <div class="container">
+    <form method="POST">
+      <label>Pregnancies</label><input name="Pregnancies" type="number" step="any" required>
+      <label>Glucose (mg/dL)</label><input name="Glucose" type="number" step="any" required>
+      <label>Blood Pressure (mmHg)</label><input name="BloodPressure" type="number" step="any" required>
+      <label>Skin Thickness (mm)</label><input name="SkinThickness" type="number" step="any" required>
+      <label>Insulin (mu U/mL)</label><input name="Insulin" type="number" step="any" required>
+      <label>BMI (kg/m²)</label><input name="BMI" type="number" step="any" required>
+      <label>Diabetes Pedigree Function</label><input name="DiabetesPedigreeFunction" type="number" step="any" required>
+      <label>Age (years)</label><input name="Age" type="number" step="any" required>
+      <button type="submit">Check Risk</button>
+    </form>
+
+    {% if result %}
+      <div class="result {% if 'High' in result %}high-risk{% else %}low-risk{% endif %}">
+        {{ result }}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
